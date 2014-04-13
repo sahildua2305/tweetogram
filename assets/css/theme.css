@@ -1,0 +1,6 @@
+body{background: #efefef url('../images/bg.jpg') repeat left top;}
+.section_header{text-align: center;font-weight: bolder;color: #252b34;margin-top: 80px;position: relative;margin-bottom: 40px;}
+.section_header hr{border-top: 1px solid #bec0c3;border-bottom: 2px solid white;width: 36%;position: absolute;}
+.section_header span{width: 27%;display: block;margin: 0 auto;}
+.section_header hr.right{right:0;top:0;}
+.feature{margin:0 4%;}
