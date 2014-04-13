@@ -9,4 +9,4 @@ body {padding-top:20px;padding-bottom: 40px;}
 .jumbotron h1 {font-size: 72px;line-height: 1;}
 .jumbotron .btn {font-size: 21px;padding: 14px 24px;}
 
-.alert-login{background:red;color:white;font-size:25px;padding:1%;}
+.controls textarea{width:70%;}

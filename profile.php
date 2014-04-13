@@ -1,5 +1,8 @@
 <?php
 session_start();
+require_once('library/twitteroauth.php');
+include('config.php');
+
 if(!isset($_SESSION['twg_tw_name']) || !isset($_SESSION['twg_tw_screen_name'])) {
 	header('Location: index.php?login=0');
 }
@@ -31,3 +34,6 @@ $tw_location = $_SESSION["twg_tw_location"];
 			<td><?php echo $tw_description; ?></td>
 		</tr>
 	</table>
+<?php
+include 'core/footer.php';
+?>
