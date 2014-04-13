@@ -1,4 +1,9 @@
+		<a href="https://twitter.com/sahildua2305" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="large" >Follow @twitter</a>
 		
+		<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="http://sahildua.collegespace.in/tweetogram/" data-size="large" data-via="sahildua2305" data-hashtags="tweetogram,twitterAPI" data-lang="en" data-text="Tweetogram | The coolest way to learn the scope of Twitter API">Tweet</a>
+		
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 		<!-- Start of StatCounter Code for Default Guide -->
 		<script type="text/javascript">
 		var sc_project=9414391; 
