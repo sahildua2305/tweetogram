@@ -20,11 +20,7 @@ if(isset($_GET['oauth_token']))
 		if($content && isset($content->screen_name) && isset($content->name))
 		{
 			$_SESSION["twg_tw_name"] = $content->name;
-			$_SESSION["twg_tw_user_id"] = $content->id;
 			$_SESSION["twg_tw_screen_name"] = $content->screen_name;
-			$_SESSION["twg_tw_image"] = $content->profile_image_url;
-			$_SESSION["twg_tw_description"] = $content->description;
-			$_SESSION["twg_tw_location"] = $content->location;
 			//redirect to main page.
 			header('Location: index.php'); 
 		}
