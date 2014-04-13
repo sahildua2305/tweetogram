@@ -8,7 +8,7 @@ if(!isset($_SESSION['twg_tw_name']) || !isset($_SESSION['twg_tw_screen_name'])) 
 }
 include 'core/header.php';
 ?>
-	<h3 class="text-center">Post tweets directly from here</h3>
+	<h3 class="text-center">Post tweets to your Twitter Account</h3>
 	<br><br>
 	
 	<form class="form-horizontal" method="POST" action="">
