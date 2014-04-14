@@ -31,14 +31,17 @@ if(isset($_POST['tweet'])){
 		echo '<p class="text-center alert-error">Tweet Max limit(140 characters) crossed!!!</p>';
 	}
 	else{
-		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $ACCESS_TOKEN, $ACCESS_SECRET);
-		$response = $connection->post('statuses/update', array('status' => $tweetText));
-		if($response->errors[0]->message!=""){
-			$msg=$response->errors[0]->message;
-			echo '<p class="text-center alert-error">'.$msg.'</p>';
-		}
-		else if($response->text!=""){
-			echo '<p class="text-center alert-success">Tweet Sent!</p>';
+		if($_SESSION['access_token']){
+			$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
+			
+			$response = $connection->post('statuses/update', array('status' => $tweetText));
+			if($response->errors[0]->message!=""){
+				$msg=$response->errors[0]->message;
+				echo '<p class="text-center alert-error">'.$msg.'</p>';
+			}
+			else if($response->text!=""){
+				echo '<p class="text-center alert-success">Tweet Sent!</p>';
+			}
 		}
 	}
 }
