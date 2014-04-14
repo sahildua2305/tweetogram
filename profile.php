@@ -8,6 +8,20 @@ if(!isset($_SESSION['twg_tw_name']) || !isset($_SESSION['twg_tw_screen_name'])) 
 }
 include 'core/header.php';
 
+$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['request_token'], $_SESSION['request_token_secret']);
+$access_token = $connection->getAccessToken($_REQUEST['oauth_verifier']);
+
+if($access_token){
+	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $access_token['oauth_token'], $access_token['oauth_token_secret']);
+	$params =array();
+	$params['include_entities']='false';
+	$content = $connection->get('account/verify_credentials',$params);
+
+	if($content && isset($content->screen_name) && isset($content->name)){
+		echo $content->name;
+	}
+}
+var_dump($access_token);
 ?>
 	<img class="img-thumbnail" src="<?php echo $_SESSION['tw_profile_image_url']; ?>" width="100" style="float:left;">
 	<h3><?php echo $_SESSION['twg_tw_name'] . " <i>(@" . $_SESSION['twg_tw_screen_name'] . ")</i>"; ?></h3>
