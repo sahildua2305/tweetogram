@@ -12,7 +12,7 @@ include 'core/header.php';
 		
 <?php
 if(isset($_SESSION['twg_tw_name']) && isset($_SESSION['twg_tw_screen_name'])) {
-	echo '<a class="btn btn-large btn-success" href="">View my profile</a>';
+	echo '<a class="btn btn-large btn-success" href="profile.php">View my profile</a>';
 }
 else{
 	echo '<a class="btn btn-large btn-success" href="login.php">Login using Twitter</a>';
