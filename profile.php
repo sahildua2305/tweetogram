@@ -9,19 +9,14 @@ if(!isset($_SESSION['twg_tw_name']) || !isset($_SESSION['twg_tw_screen_name'])) 
 include 'core/header.php';
 
 //echo $_SESSION['access_token']['oauth_token_secret'];
-
+/*
 if($_SESSION['access_token']){
 	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 	
 	$params =array();
 	$params['include_entities']='false';
 	$content = $connection->get('account/verify_credentials',$params);
-	
-	$response = $connection->get('statuses/user_timeline', array());
-	foreach($response as $a){
-		print_r($a);
-		echo "<br><br>";
-	}
+	//print_r($content);
 	
 	if($content && isset($content->screen_name) && isset($content->name)){
 		$_SESSION["twg_tw_name"] = $content->name; //echo $_SESSION['twg_tw_name'];
@@ -41,7 +36,7 @@ if($_SESSION['access_token']){
 		$_SESSION['tw_url'] = $content->url;
 	}
 }
-
+*/
 //print_r($_SESSION['access_token']);
 ?>
 	<img class="img-thumbnail" src="<?php echo $_SESSION['tw_profile_image_url']; ?>" width="100" style="float:left;">

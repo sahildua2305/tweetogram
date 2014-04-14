@@ -25,6 +25,7 @@ session_start();
 			<div class="masthead">
 				<ul class="nav nav-pills pull-right">
 					<li><a href="profile.php">My Profile</a></li>
+					<li><a href="timeline.php">Timeline</a></li>
 					<li><a href="post.php">New Tweet</a></li>
 					<li><a href="#">Hashtag Search</a></li>
 					<li class="active"><?php if(isset($_SESSION['twg_tw_name']) && isset($_SESSION['twg_tw_screen_name']))  echo '<a href="logout.php">Logout</a>';  else echo '<a href="login.php">Login</a>'; ?></li>
