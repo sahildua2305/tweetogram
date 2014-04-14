@@ -8,7 +8,7 @@
 		
 		<hr>
 		
-		<table><tr><td><iframe src="http://ghbtns.com/github-btn.html?user=sahildua2305&repo=tweetogram&type=watch&count=true" height="50" width="118" frameborder="0" scrolling="0" style="width:118px; height: 30px;" allowTransparency="true"></iframe></td>
+		<table class="table table-striped"><tr><td><iframe src="http://ghbtns.com/github-btn.html?user=sahildua2305&repo=tweetogram&type=watch&count=true" height="50" width="118" frameborder="0" scrolling="0" style="width:118px; height: 30px;" allowTransparency="true"></iframe></td>
 		<td><iframe src="http://ghbtns.com/github-btn.html?user=sahildua2305&repo=tweetogram&type=fork&count=true" height="50" width="118" frameborder="0" scrolling="0" style="width:118px; height: 30px;" allowTransparency="true"></iframe></td>
 		<td><iframe src="http://ghbtns.com/github-btn.html?user=sahildua2305&type=follow" height="50" width="168" frameborder="0" scrolling="0" style="width:168px; height: 30px;" allowTransparency="true"></iframe></td>
 		<td><div class="g-plusone" data-size="medium"   data-href="http://sahildua.collegespace.in/tweetogram/"></div><script type="text/javascript">(function() {var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;po.src = 'https://apis.google.com/js/plusone.js';var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);})();</script></td><td><script src="//platform.linkedin.com/in.js" type="text/javascript"> lang: en_US </script>
