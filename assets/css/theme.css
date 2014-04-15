@@ -11,4 +11,6 @@ body {padding-top:20px;padding-bottom: 40px;}
 
 .controls textarea{width:70%;}
 img.timeline{float: left;padding: 1%;}
-.timeline-tweets{margin-bottom:2%;}
+.timeline-tweets{margin-bottom:1%;background:rgba(240,240,240,1);height:80px;}
+.timeline-tweets p{padding-top:0.5%;margin:0%;}
+.timeline-close{float: right;padding-right: 1%;}
