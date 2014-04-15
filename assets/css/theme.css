@@ -10,3 +10,5 @@ body {padding-top:20px;padding-bottom: 40px;}
 .jumbotron .btn {font-size: 21px;padding: 14px 24px;}
 
 .controls textarea{width:70%;}
+img.timeline{float: left;padding: 1%;}
+.timeline-tweets{margin-bottom:2%;}
