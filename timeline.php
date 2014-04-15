@@ -19,10 +19,10 @@ if($_SESSION['access_token']){
 	foreach($response as $a){
 		echo "<div class='timeline-tweets'>";
 		echo "<img src='".$_SESSION['tw_profile_image_url']."' class='img-thumbnail timeline' width='50'>";
-		echo "<a class='timeline-close' href='delete.php?id_str=".$a->id_str."'><img src=''>a</a>";
+		echo "<a class='timeline-close' href='delete.php?id_str=".$a->id_str."' onclick='return confirm(\"Are you sure you want to delete this tweet?\")'><img src='assets/img/icon_close_small.jpg'></a>";
 		echo "<p><a href='http://twitter.com/".$a->user->screen_name."' target='_blank'>".($a->user->name)." <span class='muted'>@".$a->user->screen_name."</span></a></p>";
 		echo ($a->text)."<br>";
-		echo "At: ".($a->created_at);
+		echo "<span class='muted small'>".($a->created_at)."</span>";
 		echo "</div>";
 	}
 }

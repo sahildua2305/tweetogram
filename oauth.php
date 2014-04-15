@@ -17,8 +17,8 @@ if(isset($_GET['oauth_token']))
 		$params['include_entities']='false';
 		$content = $connection->get('account/verify_credentials',$params);
 		
-		//$response = $connection->get('statuses/user_timeline', array());
-		//$_SESSION['response-tweets'] = $response;
+		$response = $connection->get('statuses/user_timeline', array());
+		$_SESSION['response-tweets'] = $response;
 
 		if($content && isset($content->screen_name) && isset($content->name))
 		{
