@@ -12,8 +12,8 @@ include 'core/header.php';
 if($_SESSION['access_token']){
 	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 	
-	//$response = $connection->get('statuses/user_timeline', array());
-	$response = $_SESSION['response-tweets'];
+	$response = $connection->get('statuses/user_timeline', array());
+	//$response = $_SESSION['response-tweets'];
 	//print_r($response[0]);
 	
 	foreach($response as $a){
