@@ -13,11 +13,15 @@ if($_SESSION['access_token']){
 	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 	
 	$response = $connection->get('followers/ids', array());
+	$response = $response->ids;
 	print_r($response);
-	echo $response->ids[0];
 	
-	$show = $connection->get('users/show', array(), $response->ids[0]);
-	print_r($show);
+	$options = array();
+	foreach($response as $r){
+		$options['id'] = $r;
+		//$show = $connection->get('users/show', $options);
+		//echo $show->screen_name."<br>";
+	}
 	
 }
 
