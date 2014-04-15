@@ -16,7 +16,7 @@ if(isset($_GET['id_str'])){
 		//delete the tweet
 		$connection->post("statuses/destroy/".$_GET['id_str'], array());
 		//redirect
-		header('Location: timeline.php');
+		print('<script>window.location="timeline.php?deleted=1";</script>');
 	}
 }
 

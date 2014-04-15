@@ -39,7 +39,7 @@ if($_SESSION['access_token']){
 */
 //print_r($_SESSION['access_token']);
 ?>
-	<img class="img-thumbnail" src="<?php echo $_SESSION['tw_profile_image_url']; ?>" width="100" style="float:left;">
+	<img class="img-thumbnail" src="<?php echo $_SESSION['tw_profile_image_url']; ?>" width="50" style="float:left;">
 	<h3><?php echo $_SESSION['twg_tw_name'] . " <i>(@" . $_SESSION['twg_tw_screen_name'] . ")</i>"; ?></h3>
 	<p style="clear: both;"></p>
 	
