@@ -28,7 +28,7 @@ if($_SESSION['access_token']){
 		echo "<a class='timeline-close' href='delete.php?id_str=".$a->id_str."' onclick='return confirm(\"Are you sure you want to delete this tweet?\")'><img src='assets/img/icon_close_small.jpg'></a>";
 		echo "<p><a href='http://twitter.com/".$a->user->screen_name."' target='_blank'>".($a->user->name)." <span class='muted'>@".$a->user->screen_name."</span></a></p>";
 		echo ($a->text)."<br>";
-		echo "<span class='muted small'>".($a->created_at)."</span>";
+		echo "<span class='muted small'>".date("g:i: A D, F jS Y",strtotime($a->created_at))."</span>";
 		echo "</div>";
 	}
 }

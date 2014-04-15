@@ -50,7 +50,7 @@ if($_SESSION['access_token']){
 		</tr>
 		<tr>
 			<td>Account created at</td>
-			<td><?php echo $_SESSION['tw_created_at']; ?></td>
+			<td><?php echo date("g:i: A D, F jS Y",strtotime($_SESSION['tw_created_at'])); ?></td>
 		</tr>
 		<tr>
 			<td>Location</td>
