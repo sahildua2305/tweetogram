@@ -16,12 +16,14 @@ if($_SESSION['access_token']){
 	$response = $response->ids;
 	print_r($response);
 	
+	/*
 	$options = array();
 	foreach($response as $r){
 		$options['id'] = $r;
 		//$show = $connection->get('users/show', $options);
 		//echo $show->screen_name."<br>";
-	}
+	}*/
+	}*/
 	
 }
 
