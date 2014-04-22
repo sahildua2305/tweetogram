@@ -8,14 +8,31 @@ if(!isset($_SESSION['twg_tw_name']) || !isset($_SESSION['twg_tw_screen_name'])) 
 	header('Location: index.php?login=0');
 }
 include 'core/header.php';
+?>
 
-
-if($_SESSION['access_token']){
-	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
+	<form class="form-inline" method="POST" action="">
+		<div class="control-group">
+			<label class="control-label"></label>
+			<div class="controls">
+				<input type="text" class="itemName" name="searchedUser" required/>
+				<input class="btn btn-primary" type="submit" name="search" value="Search">
+			</div>
+		</div>
+	</form>
 	
-	if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || (isset($_GET['refresh']) && $_GET['refresh'] == '1') || !isset($_SESSION['response-tweets'])){
+<?php
+if($_SESSION['access_token']){
+
+	if($$_SESSION['twg_tw_screen_name'] != $response[0]->user->screen_name){
+	//if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || (isset($_GET['refresh']) && $_GET['refresh'] == '1') || !isset($_SESSION['response-tweets'])){
+		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 		$response = $connection->get('statuses/user_timeline', array());
-		//$response = $connection->get('statuses/user_timeline', array('screen_name' => 'twitterapi'));
+		$_SESSION['response-tweets'] = $response;
+		print('<script>window.location="timeline.php";</script>');
+	}
+	else if(isset($_POST['search']) && $_POST['searchedUser'] != ''){
+		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
+		$response = $connection->get('statuses/user_timeline', array('screen_name' => $_POST['searchedUser']));
 		$_SESSION['response-tweets'] = $response;
 		print('<script>window.location="timeline.php";</script>');
 	}
@@ -25,7 +42,7 @@ if($_SESSION['access_token']){
 	//print_r($response[0]);
 ?>
 
-	<h3 style="float:left;"><?php echo $_SESSION['twg_tw_name'] . " <i>(@" . $_SESSION['twg_tw_screen_name'] . ")</i>"; ?></h3>
+	<h3 style="float:left;"><?php echo $response[0]->user->name . " <i>(@" . $response[0]->user->screen_name . ")</i>"; ?></h3>
 	<a class="btn btn-primary" href="timeline.php?refresh=1" style="float:right;">Refresh</a>
 	<p style="clear: both;"></p>
 	<p style="clear: both;"></p>
