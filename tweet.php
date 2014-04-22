@@ -29,7 +29,7 @@ include 'core/header.php';
 			$('textarea').on('input', count);
 			var max = 140;
 			function count(){
-				var val = $.trim($('textarea').val());
+				var val = ($('textarea').val());
 				var chars = 0;
 				chars = val.length;
 				if(chars>(max-20))
