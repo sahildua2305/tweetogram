@@ -1,0 +1,25 @@
+[13-Apr-2014 21:45:48] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/colleges/public_html/sahildua/tweetogram/profile.php on line 9
+[13-Apr-2014 21:48:34] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/colleges/public_html/sahildua/tweetogram/profile.php on line 19
+[13-Apr-2014 21:49:16] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/colleges/public_html/sahildua/tweetogram/profile.php on line 19
+[14-Apr-2014 02:48:37] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/colleges/public_html/sahildua/tweetogram/core/header.php:12) in /home/colleges/public_html/sahildua/tweetogram/post.php on line 28
+[14-Apr-2014 03:29:29] PHP Fatal error:  Class 'TwitterOAuth' not found in /home/colleges/public_html/sahildua/tweetogram/post.php on line 32
+[14-Apr-2014 03:30:00] PHP Catchable fatal error:  Object of class TwitterOAuth could not be converted to string in /home/colleges/public_html/sahildua/tweetogram/post.php on line 35
+[14-Apr-2014 03:30:18] PHP Catchable fatal error:  Object of class TwitterOAuth could not be converted to string in /home/colleges/public_html/sahildua/tweetogram/post.php on line 35
+[14-Apr-2014 17:23:06] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/colleges/public_html/sahildua/tweetogram/oauth.php:22) in /home/colleges/public_html/sahildua/tweetogram/oauth.php on line 25
+[14-Apr-2014 17:23:57] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/colleges/public_html/sahildua/tweetogram/oauth.php:22) in /home/colleges/public_html/sahildua/tweetogram/oauth.php on line 25
+[14-Apr-2014 19:28:49] PHP Catchable fatal error:  Object of class stdClass could not be converted to string in /home/colleges/public_html/sahildua/tweetogram/profile.php on line 17
+[14-Apr-2014 21:08:43] PHP Fatal error:  Call to a member function get() on a non-object in /home/colleges/public_html/sahildua/tweetogram/post.php on line 48
+[14-Apr-2014 21:08:55] PHP Fatal error:  Call to a member function post() on a non-object in /home/colleges/public_html/sahildua/tweetogram/post.php on line 48
+[14-Apr-2014 21:10:19] PHP Warning:  array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array in /home/colleges/public_html/sahildua/tweetogram/library/OAuth.php on line 303
+[14-Apr-2014 21:31:23] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 17
+[14-Apr-2014 21:31:26] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 17
+[15-Apr-2014 10:55:47] PHP Warning:  Invalid argument supplied for foreach() in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 19
+[15-Apr-2014 14:24:00] PHP Parse error:  syntax error, unexpected $end in /home/colleges/public_html/sahildua/tweetogram/delete.php on line 20
+[15-Apr-2014 14:24:16] PHP Warning:  array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array in /home/colleges/public_html/sahildua/tweetogram/library/OAuth.php on line 303
+[15-Apr-2014 15:06:29] PHP Warning:  Invalid argument supplied for foreach() in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 19
+[16-Apr-2014 03:26:00] PHP Parse error:  syntax error, unexpected T_ELSE in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 19
+[16-Apr-2014 03:38:28] PHP Parse error:  syntax error, unexpected $end in /home/colleges/public_html/sahildua/tweetogram/followers.php on line 16
+[16-Apr-2014 03:41:49] PHP Parse error:  syntax error, unexpected '}' in /home/colleges/public_html/sahildua/tweetogram/followers.php on line 21
+[16-Apr-2014 03:42:27] PHP Warning:  array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array in /home/colleges/public_html/sahildua/tweetogram/library/OAuth.php on line 303
+[16-Apr-2014 03:42:44] PHP Warning:  array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array in /home/colleges/public_html/sahildua/tweetogram/library/OAuth.php on line 303
+[16-Apr-2014 04:00:48] PHP Parse error:  syntax error, unexpected ';' in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 31
