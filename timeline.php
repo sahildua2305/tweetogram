@@ -15,6 +15,7 @@ if($_SESSION['access_token']){
 	
 	if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || (isset($_GET['refresh']) && $_GET['refresh'] == '1') || !isset($_SESSION['response-tweets'])){
 		$response = $connection->get('statuses/user_timeline', array());
+		//$response = $connection->get('statuses/user_timeline', array('screen_name' => 'twitterapi'));
 		$_SESSION['response-tweets'] = $response;
 		print('<script>window.location="timeline.php";</script>');
 	}
@@ -32,7 +33,7 @@ if($_SESSION['access_token']){
 <?php	
 	foreach($response as $a){
 		echo "<div class='timeline-tweets'>";
-		echo "<img src='".$_SESSION['tw_profile_image_url']."' class='img-thumbnail timeline' width='50'>";
+		echo "<img src='".$a->user->profile_image_url."' class='img-thumbnail timeline' width='50'>";
 		echo "<a class='timeline-close' href='delete.php?id_str=".$a->id_str."' onclick='return confirm(\"Are you sure you want to delete this tweet?\")'><img src='assets/img/icon_close_small.jpg'></a>";
 		echo "<p><a href='http://twitter.com/".$a->user->screen_name."' target='_blank'>".($a->user->name)." <span class='muted'>@".$a->user->screen_name."</span></a></p>";
 		echo ($a->text)."<br>";
