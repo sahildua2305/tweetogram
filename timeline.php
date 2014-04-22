@@ -14,9 +14,12 @@ include 'core/header.php';
 		<div class="control-group">
 			<label class="control-label"></label>
 			<div class="controls">
-				<input type="text" class="itemName" name="searchedUser" required/>
-				<input class="btn btn-primary" type="submit" name="search" value="Search">
-				<input class="btn btn-success" type="button" name="" value="Me">
+				<div class="inout-append input-prepend">
+					<span class="add-on">@</span>
+					<input type="text" class="itemName" id="appendedPrependedInput" name="searchedUser" required/>
+					<input class="btn btn-primary" type="submit" name="search" value="Search">
+				</div>
+				<a class="btn btn-success" href="timeline.php">Me</a>
 			</div>
 		</div>
 		<?php
@@ -30,11 +33,17 @@ include 'core/header.php';
 $response = '';
 if($_SESSION['access_token']){
 
-	if(isset($_GET['user']) && $_GET['user'] != ''){
+	if((isset($_GET['user']) && $_GET['user'] != '') || ((isset($_GET['refresh']) && $_GET['refresh'] == '1') && (isset($_GET['user']) && $_GET['user'] != ''))){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 		$response = $connection->get('statuses/user_timeline', array('screen_name' => $_GET['user']));
-		//$_SESSION['response-tweets'] = $response;
-		//print('<script>window.location="timeline.php";</script>');
+		if($response->error != '' || $response->errors[0]->code == 34){
+			echo '<br><br><h2 class="text-center">Username '.$GET['user'].' doesn\'t exist!</h3>';
+			die();
+		}
+		if(count($response) == 0){
+			echo '<br><br><h2 class="text-center">Not enough information available!</h3>';
+			die();
+		}
 	}
 	else if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || (isset($_GET['refresh']) && $_GET['refresh'] == '1') || !isset($_SESSION['response-tweets'])){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
@@ -44,10 +53,9 @@ if($_SESSION['access_token']){
 	}
 	else
 		$response = $_SESSION['response-tweets'];
-	//$response = $_SESSION['response-tweets'];
-	//print_r($response[0]);
+	//print_r($response);
+	
 ?>
-
 	<h3 style="float:left;"><?php echo $response[0]->user->name . " <i>(@" . $response[0]->user->screen_name . ")</i>"; ?></h3>
 	<a class="btn btn-primary" href="timeline.php?refresh=1" style="float:right;">Refresh</a>
 	<p style="clear: both;"></p>
