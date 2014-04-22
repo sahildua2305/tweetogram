@@ -8,7 +8,6 @@ if(!isset($_SESSION['twg_tw_name']) || !isset($_SESSION['twg_tw_screen_name'])) 
 }
 include 'core/header.php';
 ?>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 	<h3 class="text-center">Post tweets to your Twitter Account</h3>
 	<br><br>
@@ -28,18 +27,25 @@ include 'core/header.php';
 		</div>
 		<script>
 			$('textarea').on('input', count);
+			var max = 140;
 			function count(){
 				var val = $.trim($('textarea').val());
 				var chars = 0;
 				chars = val.length;
-				if(chars>120)
-					$('.charCount').html("<span style='color:red;'>" + (140-chars) + "</span>");
-				else if(chars>0 && chars<=120 || chars==0)
-					$('.charCount').html("<span style='color:green;'>" + (140-chars) + "</span>");
-				else if(chars>140)
-					$('.charCount').html("<span style='background:red;color:white;'>" + (140-chars) + "</span>");
+				if(chars>(max-20))
+					$('.charCount').html("<span style='color:red;'>" + (max-chars) + "</span>");
+				else if(chars>0 && chars<=(max-20) || chars==0)
+					$('.charCount').html("<span style='color:green;'>" + (max-chars) + "</span>");
+				else if(chars>=max)
+					$('.charCount').html("<span style='background:red;color:white;'>" + (max-chars) + "</span>");
+				//console.log(chars);
 			}
 			count();
+			$('textarea').keypress(function(e) {
+				if (this.value.length >= max) {
+					this.value = this.value.substring(0, max-1);
+				}
+			});
 		</script>
 	</form>
 <?php

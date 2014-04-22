@@ -21,6 +21,7 @@ session_start();
 		
 		<script src="js/jquery-1.10.2.js"></script>
 		<script src="js/bootstrap..min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	</head>
 	<body>
 		<div class="container-narrow container">
