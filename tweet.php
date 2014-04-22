@@ -16,7 +16,7 @@ include 'core/header.php';
 		<div class="control-group">
 			<label class="control-label">Tweet Text</label>
 			<div class="controls">
-				<textarea rows="4" cols="70" class="itemName" name="tweetText"><?php if(isset($_POST['tweetText'])) echo $_POST['tweetText']; ?></textarea>
+				<textarea rows="4" cols="70" class="itemName" name="tweetText"><?php if(isset($_POST['tweetText'])) echo $_POST['tweetText']; else echo "        via http://sahildua.collegespace.in/tweetogram/tweet.php #Tweetogram #Twitter"; ?></textarea>
 			</div>
 		</div>
 		<div class="control-group">

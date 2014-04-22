@@ -16,23 +16,29 @@ include 'core/header.php';
 			<div class="controls">
 				<input type="text" class="itemName" name="searchedUser" required/>
 				<input class="btn btn-primary" type="submit" name="search" value="Search">
+				<input class="btn btn-success" type="button" name="" value="Me">
 			</div>
 		</div>
+		<?php
+			if(isset($_POST['search']) && $_POST['searchedUser'] != ''){
+				print('<script>window.location="timeline.php?user='.$_POST['searchedUser'].'";</script>');
+			}
+		?>
 	</form>
 	
 <?php
+$response = '';
 if($_SESSION['access_token']){
 
-	if($$_SESSION['twg_tw_screen_name'] != $response[0]->user->screen_name){
-	//if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || (isset($_GET['refresh']) && $_GET['refresh'] == '1') || !isset($_SESSION['response-tweets'])){
+	if(isset($_GET['user']) && $_GET['user'] != ''){
+		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
+		$response = $connection->get('statuses/user_timeline', array('screen_name' => $_GET['user']));
+		//$_SESSION['response-tweets'] = $response;
+		//print('<script>window.location="timeline.php";</script>');
+	}
+	else if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || (isset($_GET['refresh']) && $_GET['refresh'] == '1') || !isset($_SESSION['response-tweets'])){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 		$response = $connection->get('statuses/user_timeline', array());
-		$_SESSION['response-tweets'] = $response;
-		print('<script>window.location="timeline.php";</script>');
-	}
-	else if(isset($_POST['search']) && $_POST['searchedUser'] != ''){
-		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
-		$response = $connection->get('statuses/user_timeline', array('screen_name' => $_POST['searchedUser']));
 		$_SESSION['response-tweets'] = $response;
 		print('<script>window.location="timeline.php";</script>');
 	}
@@ -51,7 +57,8 @@ if($_SESSION['access_token']){
 	foreach($response as $a){
 		echo "<div class='timeline-tweets'>";
 		echo "<img src='".$a->user->profile_image_url."' class='img-thumbnail timeline' width='50'>";
-		echo "<a class='timeline-close' href='delete.php?id_str=".$a->id_str."' onclick='return confirm(\"Are you sure you want to delete this tweet?\")'><img src='assets/img/icon_close_small.jpg'></a>";
+		echo "<a class='timeline-close' href='delete.php?id_str=".$a->id_str."' onclick='return confirm(\"Are you sure you want to delete this tweet?\")'>";
+		if(!isset($_GET['user'])) echo "<img src='assets/img/icon_close_small.jpg'></a>";
 		echo "<p><a href='http://twitter.com/".$a->user->screen_name."' target='_blank'>".($a->user->name)." <span class='muted'>@".$a->user->screen_name."</span></a></p>";
 		echo ($a->text)."<br>";
 		echo "<span class='muted small'>".date("g:i: A D, F jS Y",strtotime($a->created_at))."</span>";
