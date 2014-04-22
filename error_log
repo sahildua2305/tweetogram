@@ -23,3 +23,25 @@
 [16-Apr-2014 03:42:27] PHP Warning:  array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array in /home/colleges/public_html/sahildua/tweetogram/library/OAuth.php on line 303
 [16-Apr-2014 03:42:44] PHP Warning:  array_merge() [<a href='function.array-merge'>function.array-merge</a>]: Argument #2 is not an array in /home/colleges/public_html/sahildua/tweetogram/library/OAuth.php on line 303
 [16-Apr-2014 04:00:48] PHP Parse error:  syntax error, unexpected ';' in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 31
+[22-Apr-2014 20:17:38] PHP Parse error:  syntax error, unexpected T_STRING, expecting ')' in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 18
+[22-Apr-2014 20:20:22] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 24
+[22-Apr-2014 20:53:32] PHP Parse error:  syntax error, unexpected '}' in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 22
+[22-Apr-2014 20:54:57] PHP Parse error:  syntax error, unexpected '}' in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 22
+[22-Apr-2014 20:54:57] PHP Parse error:  syntax error, unexpected '}' in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 22
+[22-Apr-2014 20:55:00] PHP Parse error:  syntax error, unexpected '}' in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 22
+[22-Apr-2014 21:39:41] PHP Parse error:  syntax error, unexpected '}' in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 22
+[22-Apr-2014 23:33:10] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 54
+[22-Apr-2014 23:33:36] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 51
+[22-Apr-2014 23:33:38] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 51
+[22-Apr-2014 23:33:50] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 54
+[22-Apr-2014 23:34:46] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 54
+[22-Apr-2014 23:38:48] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 55
+[22-Apr-2014 23:39:13] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 55
+[22-Apr-2014 23:39:33] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 55
+[22-Apr-2014 23:41:02] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 55
+[22-Apr-2014 23:41:41] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 55
+[22-Apr-2014 23:51:45] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 55
+[22-Apr-2014 23:52:06] PHP Fatal error:  Cannot use object of type stdClass as array in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 55
+[23-Apr-2014 00:06:19] PHP Parse error:  syntax error, unexpected '{' in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 36
+[23-Apr-2014 03:36:15] PHP Parse error:  syntax error, unexpected T_ECHO in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 69
+[23-Apr-2014 03:37:22] PHP Parse error:  syntax error, unexpected T_ECHO in /home/colleges/public_html/sahildua/tweetogram/timeline.php on line 74

@@ -11,8 +11,9 @@ body {padding-top:20px;padding-bottom: 40px;}
 
 .controls textarea{width:70%;}
 img.timeline{float: left;padding: 1%;}
-.timeline-tweets{margin-bottom:1%;background:rgba(240,240,240,1);height:86px;}
+.timeline-tweets{margin-bottom:1%;background:rgba(240,240,240,1);height:110px;}
 .timeline-tweets p{padding-top:0.5%;margin:0%;}
 .timeline-close{float: right;padding-right: 1%;}
-
 .charCount{margin-left:67%;}
+.tweet-controls{text-align:right;width:100%;}
+.tweet-controls a{}
