@@ -36,7 +36,6 @@
 		alt="web statistics"></a></div></noscript>
 		<!-- End of StatCounter Code for Default Guide -->
 
-		<script src="js/jquery-1.10.2.js"></script>
-		<script src="js/bootstrap..min.js"></script>
+		
 	</body>
 </html>

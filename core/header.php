@@ -18,6 +18,9 @@ session_start();
 		<link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css"/>
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css"  type="text/css"/>
 		<link rel="stylesheet" href="assets/css/theme.css">
+		
+		<script src="js/jquery-1.10.2.js"></script>
+		<script src="js/bootstrap..min.js"></script>
 	</head>
 	<body>
 		<div class="container-narrow container">
@@ -26,7 +29,7 @@ session_start();
 				<ul class="nav nav-pills pull-right">
 					<li><a href="profile.php">My Profile</a></li>
 					<li><a href="timeline.php">Timeline</a></li>
-					<li><a href="post.php">New Tweet</a></li>
+					<li><a href="tweet.php">New Tweet</a></li>
 					<li class="active"><?php if(isset($_SESSION['twg_tw_name']) && isset($_SESSION['twg_tw_screen_name']))  echo '<a href="logout.php">Logout</a>';  else echo '<a href="login.php">Login</a>'; ?></li>
 				</ul>
 				<h3 class="muted">Tweetogram</h3>
