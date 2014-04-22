@@ -13,15 +13,23 @@ include 'core/header.php';
 if($_SESSION['access_token']){
 	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 	
-	if(isset($_GET['deleted']) && $_GET['deleted'] == '1'){
+	if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || (isset($_GET['refresh']) && $_GET['refresh'] == '1') || !isset($_SESSION['response-tweets'])){
 		$response = $connection->get('statuses/user_timeline', array());
 		$_SESSION['response-tweets'] = $response;
+		print('<script>window.location="timeline.php";</script>');
 	}
 	else
 		$response = $_SESSION['response-tweets'];
 	//$response = $_SESSION['response-tweets'];
 	//print_r($response[0]);
-	
+?>
+
+	<h3 style="float:left;"><?php echo $_SESSION['twg_tw_name'] . " <i>(@" . $_SESSION['twg_tw_screen_name'] . ")</i>"; ?></h3>
+	<a class="btn btn-primary" href="timeline.php?refresh=1" style="float:right;">Refresh</a>
+	<p style="clear: both;"></p>
+	<p style="clear: both;"></p>
+
+<?php	
 	foreach($response as $a){
 		echo "<div class='timeline-tweets'>";
 		echo "<img src='".$_SESSION['tw_profile_image_url']."' class='img-thumbnail timeline' width='50'>";

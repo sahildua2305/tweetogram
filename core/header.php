@@ -13,7 +13,7 @@ session_start();
 		<meta property="og:type" content="website"/>
 		<meta property="og:description" content="Tweetogram - A Twitter API demonstration application with all the possible actions permitted with the use of Twitter API!"/>
 		<meta name="description" content="Tweetogram - A Twitter API demonstration application with all the possible actions permitted with the use of Twitter API!">
-		<meta name="keywords" content="tweetogram, twitter, API, demo, demonstration, examples, possible, actions, tweets, messages, POST, GET, DELETE">
+		<meta name="keywords" content="twitter api demonstration, twitter api, tweetogram, twitter, API, demo, demonstration, examples, possible, actions, tweets, messages, POST, GET, DELETE">
 		
 		<link rel="stylesheet" href="assets/css/bootstrap-responsive.min.css"/>
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css"  type="text/css"/>
