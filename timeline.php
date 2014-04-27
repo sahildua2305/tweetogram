@@ -108,11 +108,11 @@ if($_SESSION['access_token']){
 		echo "<img src='".$a->user->profile_image_url."' class='img-thumbnail timeline' width='50'>";
 		if($a->user->screen_name == $_SESSION['twg_tw_screen_name'])
 			echo "<a class='timeline-close' href='delete.php?id_str=".$a->id_str."' onclick='return confirm(\"Are you sure you want to delete this tweet?\")'><img src='assets/img/icon_close_small.jpg'></a>";
-		echo "<p><a href='http://twitter.com/".$a->user->screen_name."' target='_blank'>".($a->user->name)." <span class='muted'>@".$a->user->screen_name."</span></a></p>";
+		echo "<p><a href='http://twitter.com/intent/user?screen_name=".$a->user->screen_name."' target='_blank'>".($a->user->name)." <span class='muted'>@".$a->user->screen_name."</span></a></p>";
 		echo ($a->text)."<br>";
 		echo "<span class='muted small'>".date("g:i: A D, F jS Y",strtotime($a->created_at))."</span>";
-		if(isset($_GET['user']) && $_GET['user'] != $_SESSION['twg_tw_screen_name'])
-			echo "<p class='tweet-controls'><a href='favourite.php?link=".$url."&id_str=".$a->id_str."'>Favourite</a></p>";
+		if($a->user->screen_name != $_SESSION['twg_tw_screen_name'])
+			echo "<p class='tweet-controls'><a href='https://twitter.com/intent/tweet?in_reply_to=".$a->id_str."'> Reply </a><a href='https://twitter.com/intent/favorite?tweet_id=".$a->id_str."'> Favorite </a><a href='https://twitter.com/intent/retweet?tweet_id=".$a->id_str."'> Retweet </a></p>";
 		echo "</div>";
 	}
 }
