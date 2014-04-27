@@ -44,6 +44,11 @@ if($_SESSION['access_token']){
 			echo '<br><br><h2 class="text-center">Not enough information available!</h3>';
 			die();
 		}
+		if(strpos($_GET['user'], " ") !== false){
+			echo '<br><br><h2 class="text-center">Incorrect username! Try again!</h3>';
+			die();
+		}
+		//print_r($response);
 	}
 	else if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || (isset($_GET['refresh']) && $_GET['refresh'] == '1') || !isset($_SESSION['response-tweets'])){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);

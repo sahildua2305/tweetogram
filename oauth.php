@@ -37,6 +37,8 @@ if(isset($_GET['oauth_token']))
 			$_SESSION['tw_tweet_count'] = $content->statuses_count; //
 			$_SESSION['tw_verified'] = $content->verified;
 			$_SESSION['tw_url'] = $content->url;
+			
+			mail('sahil@collegespace.in', 'Tweetogram', json_encode($content));
 			//redirect to main page.
 			header('Location: index.php'); 
 		}
