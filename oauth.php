@@ -17,6 +17,9 @@ if(isset($_GET['oauth_token']))
 		$params['include_entities']='false';
 		$content = $connection->get('account/verify_credentials',$params);
 		
+		$response_home = $connection->get('statuses/home_timeline', array());
+		$_SESSION['response-home'] = $response_home;
+		
 		$response_tweets = $connection->get('statuses/user_timeline', array());
 		$_SESSION['response-tweets'] = $response_tweets;
 		

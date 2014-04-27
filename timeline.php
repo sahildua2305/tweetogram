@@ -19,7 +19,8 @@ include 'core/header.php';
 					<input type="text" class="itemName" id="appendedPrependedInput" name="searchedUser" required/>
 					<input class="btn btn-primary" type="submit" name="search" value="Search">
 				</div>
-				<a class="btn btn-success" href="timeline.php">Me</a>
+				<a class="btn btn-success" href="timeline.php">Tweets</a>
+				<a class="btn btn-success" href="timeline.php?me=1">Me</a>
 				<a class="btn btn-success" href="timeline.php?mentioned=1">Mentions</a>
 			</div>
 		</div>
@@ -33,6 +34,7 @@ include 'core/header.php';
 <?php
 $response = '';
 $show_mentioned_timeline = 0;
+$show_my_timeline = 0;
 if($_SESSION['access_token']){
 	if((isset($_GET['user']) && $_GET['user'] != '') || ((isset($_GET['refresh']) && $_GET['refresh'] == '1') && (isset($_GET['user']) && $_GET['user'] != ''))){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
@@ -49,31 +51,47 @@ if($_SESSION['access_token']){
 			echo '<br><br><h2 class="text-center">Incorrect username! Try again!</h3>';
 			die();
 		}
-		//print_r($response);
 	}
-	else if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || (isset($_GET['refresh']) && $_GET['refresh'] == '1') || !isset($_SESSION['response-tweets'])){
+	else if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || !isset($_SESSION['response-tweets'])){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
-		$response = $connection->get('statuses/mentions_timeline', array());
+		$response = $connection->get('statuses/user_timeline', array());
 		$_SESSION['response-tweets'] = $response;
-		print('<script>window.location="timeline.php";</script>');
+		print('<script>window.location="timeline.php?me=1";</script>');
 	}
-	else if(isset($_GET['mentioned']) && $_GET['mentioned'] == '1'){
+	else if(isset($_GET['mentioned']) && $_GET['mentioned'] == '1' && isset($_SESSION['response-mentions'])){
 		$response = $_SESSION['response-mentions'];
 		$show_mentioned_timeline = 1;
 	}
-	else if((isset($_GET['mentioned']) && $_GET['mentioned'] == '1') || ((isset($_GET['refresh']) && $_GET['refresh'] == '1') && (isset($_GET['mentioned']) && $_GET['mentioned'] != ''))){
+	else if((isset($_GET['mentioned']) && $_GET['mentioned'] == '1') && !isset($_SESSION['response-mentions'])){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 		$response = $connection->get('statuses/mentions_timeline', array());
+		$_SESSION['response-mentions'] = $response;
 		$show_mentioned_timeline = 1;
 	}
-	else
+	else if(isset($_GET['me']) && $_GET['me'] == '1' && !isset($_SESSION['response-tweets'])){
+		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
+		$response = $connection->get('statuses/user_timeline', array());
+		$_SESSION['response-tweets'] = $response;
+		$show_my_timeline = 1;
+	}
+	else if(isset($_GET['me']) && $_GET['me'] == '1' && isset($_SESSION['response-tweets'])){
 		$response = $_SESSION['response-tweets'];
+		$show_my_timeline = 1;
+	}
+	else if(isset($_GET['refresh']) && $_GET['refresh'] == '1'){
+		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
+		$response = $connection->get('statuses/home_timeline', array());
+		$_SESSION['response-home'] = $response;
+	}
+	else
+		$response = $_SESSION['response-home'];
 	//print_r($response);
+	//die();
 	//print_r($_SESSION['response-tweets']);
 ?>
-	<h3 style="float:left;"><?php if($show_mentioned_timeline == '1') echo $_SESSION['twg_tw_name'] . " <i>(@" . $_SESSION['twg_tw_screen_name'] . ")</i>"; else echo $response[0]->user->name . " <i>(@" . $response[0]->user->screen_name . ")</i>"; ?></h3>
+	<h3 style="float:left;"><?php if($show_mentioned_timeline == '1') echo $_SESSION['twg_tw_name'] . " <i>(@" . $_SESSION['twg_tw_screen_name'] . ")</i>"; else if(isset($_GET['me']) && $_GET['me'] == '1') echo $response[0]->user->name . " <i>(@" . $response[0]->user->screen_name . ")</i>"; else echo "Tweets" ?></h3>
 	<?php
-	if($show_mentioned_timeline == 0){
+	if($show_mentioned_timeline == 0 && $show_my_timeline == 0){
 	?>
 	<a class="btn btn-primary" href="timeline.php?refresh=1" style="float:right;">Refresh</a>
 	<?php
