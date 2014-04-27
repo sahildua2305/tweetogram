@@ -20,6 +20,7 @@ include 'core/header.php';
 					<input class="btn btn-primary" type="submit" name="search" value="Search">
 				</div>
 				<a class="btn btn-success" href="timeline.php">Me</a>
+				<a class="btn btn-success" href="timeline.php?mentioned=1">Mentions</a>
 			</div>
 		</div>
 		<?php
@@ -52,9 +53,16 @@ if($_SESSION['access_token']){
 	}
 	else if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || (isset($_GET['refresh']) && $_GET['refresh'] == '1') || !isset($_SESSION['response-tweets'])){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
-		$response = $connection->get('statuses/user_timeline', array());
+		$response = $connection->get('statuses/mentions_timeline', array());
 		$_SESSION['response-tweets'] = $response;
 		print('<script>window.location="timeline.php";</script>');
+	}
+	else if((isset($_GET['mentioned']) && $_GET['mentioned'] == '1') && !isset($_GET['refresh'])){
+		$response = $_SESSION['response-mentions'];
+	}
+	else if((isset($_GET['mentioned']) && $_GET['mentioned'] == '1') || ((isset($_GET['refresh']) && $_GET['refresh'] == '1') && (isset($_GET['mentioned']) && $_GET['mentioned'] != ''))){
+		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
+		$response = $connection->get('statuses/mentions_timeline', array());
 	}
 	else
 		$response = $_SESSION['response-tweets'];
