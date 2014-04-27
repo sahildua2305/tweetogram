@@ -32,8 +32,8 @@ include 'core/header.php';
 	
 <?php
 $response = '';
+$show_mentioned_timeline = 0;
 if($_SESSION['access_token']){
-
 	if((isset($_GET['user']) && $_GET['user'] != '') || ((isset($_GET['refresh']) && $_GET['refresh'] == '1') && (isset($_GET['user']) && $_GET['user'] != ''))){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 		$response = $connection->get('statuses/user_timeline', array('screen_name' => $_GET['user']));
@@ -57,20 +57,28 @@ if($_SESSION['access_token']){
 		$_SESSION['response-tweets'] = $response;
 		print('<script>window.location="timeline.php";</script>');
 	}
-	else if((isset($_GET['mentioned']) && $_GET['mentioned'] == '1') && !isset($_GET['refresh'])){
+	else if(isset($_GET['mentioned']) && $_GET['mentioned'] == '1'){
 		$response = $_SESSION['response-mentions'];
+		$show_mentioned_timeline = 1;
 	}
 	else if((isset($_GET['mentioned']) && $_GET['mentioned'] == '1') || ((isset($_GET['refresh']) && $_GET['refresh'] == '1') && (isset($_GET['mentioned']) && $_GET['mentioned'] != ''))){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 		$response = $connection->get('statuses/mentions_timeline', array());
+		$show_mentioned_timeline = 1;
 	}
 	else
 		$response = $_SESSION['response-tweets'];
 	//print_r($response);
-	
+	//print_r($_SESSION['response-tweets']);
 ?>
-	<h3 style="float:left;"><?php echo $response[0]->user->name . " <i>(@" . $response[0]->user->screen_name . ")</i>"; ?></h3>
+	<h3 style="float:left;"><?php if($show_mentioned_timeline == '1') echo $_SESSION['twg_tw_name'] . " <i>(@" . $_SESSION['twg_tw_screen_name'] . ")</i>"; else echo $response[0]->user->name . " <i>(@" . $response[0]->user->screen_name . ")</i>"; ?></h3>
+	<?php
+	if($show_mentioned_timeline == 0){
+	?>
 	<a class="btn btn-primary" href="timeline.php?refresh=1" style="float:right;">Refresh</a>
+	<?php
+	}
+	?>
 	<p style="clear: both;"></p>
 	<p style="clear: both;"></p>
 
@@ -80,7 +88,7 @@ if($_SESSION['access_token']){
 	foreach($response as $a){
 		echo "<div class='timeline-tweets'>";
 		echo "<img src='".$a->user->profile_image_url."' class='img-thumbnail timeline' width='50'>";
-		if(!isset($_GET['user']) || (isset($_GET['user']) && $_GET['user'] == $_SESSION['twg_tw_screen_name']))
+		if($a->user->screen_name == $_SESSION['twg_tw_screen_name'])
 			echo "<a class='timeline-close' href='delete.php?id_str=".$a->id_str."' onclick='return confirm(\"Are you sure you want to delete this tweet?\")'><img src='assets/img/icon_close_small.jpg'></a>";
 		echo "<p><a href='http://twitter.com/".$a->user->screen_name."' target='_blank'>".($a->user->name)." <span class='muted'>@".$a->user->screen_name."</span></a></p>";
 		echo ($a->text)."<br>";
