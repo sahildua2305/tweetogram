@@ -58,11 +58,11 @@ if($_SESSION['access_token']){
 		$_SESSION['response-tweets'] = $response;
 		print('<script>window.location="timeline.php?me=1";</script>');
 	}
-	else if(isset($_GET['mentioned']) && $_GET['mentioned'] == '1' && isset($_SESSION['response-mentions'])){
+	/*else if(isset($_GET['mentioned']) && $_GET['mentioned'] == '1' && isset($_SESSION['response-mentions'])){
 		$response = $_SESSION['response-mentions'];
 		$show_mentioned_timeline = 1;
-	}
-	else if((isset($_GET['mentioned']) && $_GET['mentioned'] == '1') && !isset($_SESSION['response-mentions'])){
+	}*/
+	else if((isset($_GET['mentioned']) && $_GET['mentioned'] == '1')){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 		$response = $connection->get('statuses/mentions_timeline', array());
 		$_SESSION['response-mentions'] = $response;
@@ -74,10 +74,10 @@ if($_SESSION['access_token']){
 		$_SESSION['response-tweets'] = $response;
 		$show_my_timeline = 1;
 	}
-	else if(isset($_GET['me']) && $_GET['me'] == '1' && isset($_SESSION['response-tweets'])){
+	/*else if(isset($_GET['me']) && $_GET['me'] == '1' && isset($_SESSION['response-tweets'])){
 		$response = $_SESSION['response-tweets'];
 		$show_my_timeline = 1;
-	}
+	}*/
 	else if(isset($_GET['refresh']) && $_GET['refresh'] == '1'){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 		$response = $connection->get('statuses/home_timeline', array());
@@ -111,8 +111,10 @@ if($_SESSION['access_token']){
 		echo "<p><a href='http://twitter.com/intent/user?screen_name=".$a->user->screen_name."' target='_blank'>".($a->user->name)." <span class='muted'>@".$a->user->screen_name."</span></a></p>";
 		echo ($a->text)."<br>";
 		echo "<span class='muted small'>".date("g:i: A D, F jS Y",strtotime($a->created_at))."</span>";
+		echo "<p class='tweet-controls'>";
 		if($a->user->screen_name != $_SESSION['twg_tw_screen_name'])
-			echo "<p class='tweet-controls'><a href='https://twitter.com/intent/tweet?in_reply_to=".$a->id_str."'> Reply </a><a href='https://twitter.com/intent/favorite?tweet_id=".$a->id_str."'> Favorite </a><a href='https://twitter.com/intent/retweet?tweet_id=".$a->id_str."'> Retweet </a></p>";
+			echo "<a href='https://twitter.com/intent/tweet?in_reply_to=".$a->id_str."'> Reply  |</a><a href='https://twitter.com/intent/favorite?tweet_id=".$a->id_str."'>  Favorite  |</a><a href='https://twitter.com/intent/retweet?tweet_id=".$a->id_str."'>  Retweet   </a>";
+		echo "</p>";
 		echo "</div>";
 	}
 }
