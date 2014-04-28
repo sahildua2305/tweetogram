@@ -68,7 +68,7 @@ if($_SESSION['access_token']){
 		$_SESSION['response-mentions'] = $response;
 		$show_mentioned_timeline = 1;
 	}
-	else if(isset($_GET['me']) && $_GET['me'] == '1' && !isset($_SESSION['response-tweets'])){
+	else if(isset($_GET['me']) && $_GET['me'] == '1'){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 		$response = $connection->get('statuses/user_timeline', array());
 		$_SESSION['response-tweets'] = $response;
