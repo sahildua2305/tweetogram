@@ -24,7 +24,7 @@ session_start();
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	</head>
 	<body>
-		<div class="container-narrow container">
+		<div class="container">
 
 			<div class="masthead">
 				<ul class="nav nav-pills pull-right">
