@@ -12,8 +12,8 @@ include 'core/header.php';
 if($_SESSION['access_token']){
 	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 	
-	$response = $connection->get('followers/list', array());
-	//print_r($response->users[0]);
+	$response = $connection->get('followers/list', array(1465557218324006364));
+	print_r($response);
 	
 	echo '<ul class="thumbnails">';
 	foreach($response->users as $user){
@@ -28,5 +28,10 @@ if($_SESSION['access_token']){
 	echo '</ul>';
 }
 
+?>
 
+
+
+<?php
+include 'core/footer.php';
 ?>
