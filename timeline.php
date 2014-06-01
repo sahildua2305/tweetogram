@@ -35,10 +35,12 @@ include 'core/header.php';
 $response = '';
 $show_mentioned_timeline = 0;
 $show_my_timeline = 0;
+$show_user_timeline = 0;
 if($_SESSION['access_token']){
 	if((isset($_GET['user']) && $_GET['user'] != '') || ((isset($_GET['refresh']) && $_GET['refresh'] == '1') && (isset($_GET['user']) && $_GET['user'] != ''))){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 		$response = $connection->get('statuses/user_timeline', array('screen_name' => $_GET['user']));
+		$show_user_timeline = 1;
 		if($response->error != '' || $response->errors[0]->code == 34){
 			echo '<br><br><h2 class="text-center">Username '.$GET['user'].' doesn\'t exist!</h3>';
 			die();
@@ -91,7 +93,7 @@ if($_SESSION['access_token']){
 ?>
 	<h3 style="float:left;"><?php if($show_mentioned_timeline == '1') echo $_SESSION['twg_tw_name'] . " <i>(@" . $_SESSION['twg_tw_screen_name'] . ")</i>"; else if(isset($_GET['me']) && $_GET['me'] == '1') echo $response[0]->user->name . " <i>(@" . $response[0]->user->screen_name . ")</i>"; else echo "Tweets" ?></h3>
 	<?php
-	if($show_mentioned_timeline == 0 && $show_my_timeline == 0){
+	if($show_mentioned_timeline == 0 && $show_my_timeline == 0 && $show_user_timeline == 0){
 	?>
 	<a class="btn btn-primary" href="timeline.php?refresh=1" style="float:right;">Refresh</a>
 	<?php
