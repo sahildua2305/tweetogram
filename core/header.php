@@ -32,6 +32,7 @@ session_start();
 					<li><a href="timeline.php">Timeline</a></li>
 					<li><a href="tweet.php">New Tweet</a></li>
 					<li><a href="followers.php">Followers</a></li>
+					<li><a href="following.php">Following</a></li>
 					<li class="active"><?php if(isset($_SESSION['twg_tw_name']) && isset($_SESSION['twg_tw_screen_name']))  echo '<a href="logout.php">Logout</a>';  else echo '<a href="login.php">Login</a>'; ?></li>
 				</ul>
 				<h3 class="muted">Tweetogram</h3>

@@ -12,10 +12,10 @@ include 'core/header.php';
 if($_SESSION['access_token']){
 	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 	
-	$response = $connection->get('followers/list', array());
+	$response = $connection->get('friends/list', array());
 	//print_r($response);
 	
-	echo '<h2 class="text-center">@'.$_SESSION['twg_tw_screen_name'].'\'s followers: </h2>';
+	echo '<h2 class="text-center">@'.$_SESSION['twg_tw_screen_name'].' is following: </h2>';
 	echo '<ul class="thumbnails">';
 	foreach($response->users as $user){
 		echo '<li class="span4">';
@@ -30,7 +30,6 @@ if($_SESSION['access_token']){
 }
 
 ?>
-
 
 
 <?php
