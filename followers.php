@@ -18,7 +18,7 @@ if($_SESSION['access_token']){
 		$response = $connection->get('followers/list', array('cursor' => '-1'));
 	else
 		$response = $connection->get('followers/list', array('cursor' => $_GET['cursor']));
-	print_r($response);
+	//print_r($response);
 	
 	echo '<h2 class="text-center">@'.$_SESSION['twg_tw_screen_name'].'\'s recent followers: </h2>';
 	echo '<ul class="thumbnails">';

@@ -205,7 +205,7 @@ class TwitterOAuth {
 
     switch ($method) {
       case 'POST':
-        curl_setopt($ci, CURLOPT_POST, TRUE); 
+        curl_setopt($ci, CURLOPT_POST, TRUE);
         if (!empty($postfields)) {
           curl_setopt($ci, CURLOPT_POSTFIELDS, $postfields);
         }

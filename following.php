@@ -3,6 +3,8 @@ session_start();
 require_once('library/twitteroauth.php');
 include('config.php');
 
+if(isset($_GET['cursor']) && $_GET['cursor'] == 0)
+	header('Location: following.php');
 
 if(!isset($_SESSION['twg_tw_name']) || !isset($_SESSION['twg_tw_screen_name'])) {
 	header('Location: index.php?login=0');
@@ -12,7 +14,10 @@ include 'core/header.php';
 if($_SESSION['access_token']){
 	$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
 	
-	$response = $connection->get('friends/list', array());
+	if(!isset($_GET['cursor']))
+		$response = $connection->get('friends/list', array('cursor' => '-1'));
+	else
+		$response = $connection->get('friends/list', array('cursor' => $_GET['cursor']));
 	//print_r($response);
 	
 	echo '<h2 class="text-center">@'.$_SESSION['twg_tw_screen_name'].' is following: </h2>';
@@ -27,6 +32,10 @@ if($_SESSION['access_token']){
 		echo '</li>';
 	}
 	echo '</ul>';
+	echo '<p class="text-center">';
+	echo '<a href="following.php?cursor='.$response->previous_cursor.'" class="btn btn-large btn-primary">Previous</a> &nbsp;';
+	echo '<a href="following.php?cursor='.$response->next_cursor.'" class="btn btn-large btn-primary">Next</a>';
+	echo '</p>';
 }
 
 ?>
