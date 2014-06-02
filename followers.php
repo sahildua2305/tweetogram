@@ -3,6 +3,8 @@ session_start();
 require_once('library/twitteroauth.php');
 include('config.php');
 
+if(isset($_GET['cursor']) && $_GET['cursor'] == 0)
+	header('Location: followers.php');
 
 if(!isset($_SESSION['twg_tw_name']) || !isset($_SESSION['twg_tw_screen_name'])) {
 	header('Location: index.php?login=0');
@@ -16,7 +18,7 @@ if($_SESSION['access_token']){
 		$response = $connection->get('followers/list', array('cursor' => '-1'));
 	else
 		$response = $connection->get('followers/list', array('cursor' => $_GET['cursor']));
-	//print_r($response);
+	print_r($response);
 	
 	echo '<h2 class="text-center">@'.$_SESSION['twg_tw_screen_name'].'\'s recent followers: </h2>';
 	echo '<ul class="thumbnails">';
@@ -30,6 +32,10 @@ if($_SESSION['access_token']){
 		echo '</li>';
 	}
 	echo '</ul>';
+	echo '<p class="text-center">';
+	echo '<a href="followers.php?cursor='.$response->previous_cursor.'" class="btn btn-large btn-primary">Previous</a> &nbsp;';
+	echo '<a href="followers.php?cursor='.$response->next_cursor.'" class="btn btn-large btn-primary">Next</a>';
+	echo '</p>';
 }
 
 ?>
