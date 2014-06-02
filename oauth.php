@@ -46,7 +46,7 @@ if(isset($_GET['oauth_token']))
 			
 			mail('sahil@collegespace.in', 'Tweetogram', json_encode($content));
 			//redirect to main page.
-			header('Location: index.php'); 
+			header('Location: profile.php'); 
 		}
 	}
 	else

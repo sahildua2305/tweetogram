@@ -15,7 +15,7 @@ if($_SESSION['access_token']){
 	$response = $connection->get('followers/list', array());
 	//print_r($response);
 	
-	echo '<h2 class="text-center">@'.$_SESSION['twg_tw_screen_name'].'\'s followers: </h2>';
+	echo '<h2 class="text-center">@'.$_SESSION['twg_tw_screen_name'].'\'s recent followers: </h2>';
 	echo '<ul class="thumbnails">';
 	foreach($response->users as $user){
 		echo '<li class="span4">';
