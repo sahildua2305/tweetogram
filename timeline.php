@@ -16,17 +16,25 @@ include 'core/header.php';
 			<div class="controls">
 				<div class="inout-append input-prepend">
 					<span class="add-on">@</span>
-					<input type="text" class="itemName" id="appendedPrependedInput" name="searchedUser" required/>
+					<input type="text" class="itemName" id="appendedPrependedInput" name="searchedUser" placeholder="<?php echo $_SESSION['twg_tw_screen_name']; ?>"/>
 					<input class="btn btn-primary" type="submit" name="search" value="Search">
 				</div>
 				<a class="btn btn-success" href="timeline.php">Tweets</a>
 				<a class="btn btn-success" href="timeline.php?me=1">Me</a>
 				<a class="btn btn-success" href="timeline.php?mentioned=1">Mentions</a>
+				<div class="inout-append input-prepend" style="float:right;">
+					<span class="add-on">#</span>
+					<input type="text" class="itemName" id="appendedPrependedInput" name="hashtag" placeholder="Hashtag" value="<?php echo $_GET['hashtag']; ?>"/>
+					<input class="btn btn-primary" type="submit" name="search" value="Search">
+				</div>
 			</div>
 		</div>
 		<?php
 			if(isset($_POST['search']) && $_POST['searchedUser'] != ''){
 				print('<script>window.location="timeline.php?user='.$_POST['searchedUser'].'";</script>');
+			}
+			else if(isset($_POST['search']) && $_POST['hashtag'] != ''){
+				print('<script>window.location="timeline.php?hashtag='.$_POST['hashtag'].'";</script>');
 			}
 		?>
 	</form>
@@ -36,6 +44,7 @@ $response = '';
 $show_mentioned_timeline = 0;
 $show_my_timeline = 0;
 $show_user_timeline = 0;
+$show_hash_search = 0;
 if($_SESSION['access_token']){
 	if((isset($_GET['user']) && $_GET['user'] != '') || ((isset($_GET['refresh']) && $_GET['refresh'] == '1') && (isset($_GET['user']) && $_GET['user'] != ''))){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
@@ -53,6 +62,12 @@ if($_SESSION['access_token']){
 			echo '<br><br><h2 class="text-center">Incorrect username! Try again!</h3>';
 			die();
 		}
+	}
+	else if((isset($_GET['hashtag']) && $_GET['hashtag'] != '')){
+		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
+		$response = $connection->get('search/tweets', array('q' => '%23'.urlencode($_GET['hashtag'])));
+		$show_hash_search = 1;
+		$response = $response->statuses;
 	}
 	else if((isset($_GET['deleted']) && $_GET['deleted'] == '1') || !isset($_SESSION['response-tweets'])){
 		$connection = new TwitterOAuth($CONSUMER_KEY, $CONSUMER_SECRET, $_SESSION['access_token']['oauth_token'], $_SESSION['access_token']['oauth_token_secret']);
@@ -93,7 +108,7 @@ if($_SESSION['access_token']){
 ?>
 	<h3 style="float:left;"><?php if($show_mentioned_timeline == '1') echo $_SESSION['twg_tw_name'] . " <i>(@" . $_SESSION['twg_tw_screen_name'] . ")</i>"; else if(isset($_GET['me']) && $_GET['me'] == '1') echo $response[0]->user->name . " <i>(@" . $response[0]->user->screen_name . ")</i>"; else echo "Tweets" ?></h3>
 	<?php
-	if($show_mentioned_timeline == 0 && $show_my_timeline == 0 && $show_user_timeline == 0){
+	if($show_mentioned_timeline == 0 && $show_my_timeline == 0 && $show_user_timeline == 0 && $show_hash_search == 0){
 	?>
 	<a class="btn btn-primary" href="timeline.php?refresh=1" style="float:right;">Refresh</a>
 	<?php
